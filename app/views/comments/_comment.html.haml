@@ -1,0 +1,11 @@
+.comment
+  %p.comment-username= comment.user.name
+  %p.comment-content{:id => "comment-content_#{comment.id}"}= comment.content
+  - if(current_user.id == comment.user_id)
+    -# %button{:class => 'comment__button-edit'} Edit
+    = link_to 'Edit', edit_post_comment_path(@post, comment), remote: true, id: 'comment__link-edit'
+    -# = link_to 'Delete', delete_comment_path(), method: :delete, remote: true
+  %p
+    = distance_of_time_in_words(Time.now, comment.created_at)
+    Ago
+%hr

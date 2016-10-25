@@ -1,0 +1,3 @@
+// Update the upvote and downvote size text
+$(".dislike_text > span").text('<%=j @post.get_downvotes.size.to_s %>');
+$(".like_text > span").text('<%=j @post.get_upvotes.size.to_s %>');

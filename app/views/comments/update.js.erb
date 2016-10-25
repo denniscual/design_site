@@ -1,0 +1,3 @@
+// hide the comment update form
+$('#comment-content_<%= @comment.id %> .comment_content').hide();
+$('#comment-content_<%= @comment.id %>').text('<%= j @comment.content %>')

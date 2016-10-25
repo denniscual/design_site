@@ -1,0 +1,10 @@
+//disable the comment button if the text has no value.
+
+// update the total comment when someone commenting.
+$('#comment > .comment_count').text("<%= j pluralize(@post.comments.count, 'Comment')%>")
+
+// adding the new comment in comment list
+$('.comment_list').prepend('<%= j render @comment %>');
+
+// clear the comment textare after submiting the comment.
+$('#comment_content').val('');

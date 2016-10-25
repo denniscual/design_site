@@ -1,0 +1,29 @@
+= image_tag @post.image.url(:medium)
+%h1= @post.title
+%p= @post.description
+%p= @post.user.name
+%p.like_text
+  %span= @post.get_upvotes.size
+  Likes
+%p.dislike_text
+  %span= @post.get_downvotes.size
+  Dislikes
+= link_to 'Like', like_post_path(@post), class: 'link_like',  method: :get, remote: true
+= link_to 'Dislike', dislike_post_path(@post), method: :get, remote: true
+
+%h1 Related Post
+- @posts.each do |post|
+  = link_to (image_tag post.image.url(:small)), post
+
+-# we will render the comments form
+= render 'comments/form'
+
+#comment
+  %h2.comment_count= pluralize(@post.comments.count, 'Comment')
+  .comment_list
+    = render @comments # we are displaying all the comments for this post.
+
+= link_to 'Home', root_path
+- if(current_user.id == @post.user_id)
+  = link_to 'Edit', edit_post_path(@post) # this will show the edit page
+  = link_to 'Delete', post_path(@post), method: :delete, data:  {confirm: 'Are you sure?'}

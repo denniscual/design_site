@@ -1,0 +1,6 @@
+var content = $('#comment-content_<%= @comment.id %>');
+content.text('');
+content.append('<%= j render "form2" %>');
+// hide the label on comment
+$('#comment-content_<%= @comment.id %> label').hide()
+ 
